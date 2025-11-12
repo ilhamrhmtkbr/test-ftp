@@ -8,9 +8,9 @@ class EnvHelper
 {
     public static function loadEnv(): void
     {
-        $filePath = __DIR__ . './../../.env';
+        $filePath = __DIR__ . '../../.env';
         if (!file_exists($filePath)) {
-            throw new Exception(".env file not found");
+            throw new Exception(".env file not found : " . $filePath);
         }
 
         $lines = file($filePath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
