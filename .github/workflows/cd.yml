@@ -44,13 +44,15 @@ jobs:
           dangerous-clean-slate: true
           local-dir: ./
           exclude: |
-            **/.git*
-            **/.github*
-            **/test*
+            **/.git
+            **/.github
+            **/docker
+            **/test
+            **/.dockerignore
             **/.env.example
+            **/.gitignore
             **/.phpunit.result.cache
             **/design.puml
-            **/docker*
             **/phpunit.xml
             **/Readme.md
 
