@@ -1,12 +1,40 @@
+# .htaccess di ROOT (sejajar dengan folder public)
+
+# Disable directory browsing
+Options -Indexes +FollowSymLinks
+
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
-    # Tentukan folder public sebagai base
-    RewriteCond %{REQUEST_URI} !^/public/
+    # Jika sudah mengakses /public/, biarkan
+    RewriteCond %{REQUEST_URI} ^/public/
+    RewriteRule ^ - [L]
 
-    # Jika file/direktori tidak ada, arahkan ke public/index.php
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
+    # Redirect semua request ke folder public
+    RewriteRule ^(.*)$ public/$1 [L,QSA]
+</IfModule>
 
-    RewriteRule ^(.*)$ public/index.php [L]
+# Blokir akses ke file sensitif
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
+
+# Blokir akses ke .env
+<Files ".env">
+    Require all denied
+</Files>
+
+# Blokir akses ke composer files
+<FilesMatch "(composer\.json|composer\.lock)$">
+    Require all denied
+</FilesMatch>
+
+# Set PHP settings untuk InfinityFree (PHP 8.3)
+<IfModule mod_php.c>
+    php_value upload_max_filesize 20M
+    php_value post_max_size 20M
+    php_value max_execution_time 60
+    php_value memory_limit 512M
+    php_flag display_errors Off
+    php_flag log_errors On
 </IfModule>

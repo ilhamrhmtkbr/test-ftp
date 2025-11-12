@@ -15,7 +15,7 @@ jobs:
       - name: Setup Php
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.2'
+          php-version: '8.3.19'
 
       - name: Create Env
         run: |
@@ -55,4 +55,3 @@ jobs:
             **/design.puml
             **/phpunit.xml
             **/Readme.md
-
