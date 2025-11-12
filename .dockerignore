@@ -1,0 +1,11 @@
+.git
+.idea
+.vscode
+*.log
+vendor
+.env
+.dockerignore
+.gitignore
+command.sh
+design.puml
+dll

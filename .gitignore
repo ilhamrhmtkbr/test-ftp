@@ -1,0 +1,47 @@
+**/.env
+**/.env.*
+!**/.env.example
+**/vendor/
+
+# VSCode
+**/.vscode/
+*.code-workspace
+
+# PhpStorm
+**/.idea/
+*.iml
+*.ipr
+*.iws
+
+# Sublime Text
+*.sublime-*
+
+# Vim
+*.swp
+*.swo
+*~
+
+# MacOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Linux
+*~
+.fuse_hidden*
+.Trash-*
+.nfs*
+
+dll

@@ -1,0 +1,53 @@
+name: Integration Test
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  integration-testing:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Persiapan ENV
+        run: |
+          cp .env.example .env
+
+      - name: Start Docker Services
+        run: |
+          sudo -E docker compose -f docker/php/docker-compose-ci.yaml up -d
+          echo "Menunggu container stabil..."
+          sleep 15
+          sudo docker ps -a
+          
+          sudo docker compose -f docker/php/docker-compose.yaml exec talent-hub-app composer install
+          
+          sudo docker compose -f docker/php/docker-compose.yaml exec -i talent-hub-mysql mysql -u root -proot -e "CREATE DATABASE IF NOT EXISTS talent_hub;"
+          sudo docker compose -f docker/php/docker-compose.yaml exec -i talent-hub-mysql mysql -u root -proot talent_hub < docker/mysql/talent_hub.sql
+          
+          for i in {1..30}; do
+          if sudo docker exec talent-hub-mysql mysql -uroot -proot -e "SELECT 1" &>/dev/null; then
+           echo "MySQL ready!"
+           break
+          fi
+          echo "Waiting for MySQL... ($i/30)"
+          sleep 2
+          done
+
+      - name: Run Integration Tests
+        run: |
+          sudo docker exec talent-hub-app vendor/bin/phpunit
+
+      - name: Tampilkan Log Backend jika gagal
+        if: failure()
+        run: |
+          sudo docker logs talent-hub-app
+
+      - name: Cleanup Docker
+        if: always()
+        run: |
+          sudo docker compose -f docker/php/docker-compose-ci.yaml down -v --remove-orphans
+          sudo docker system prune -f

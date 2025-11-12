@@ -1,0 +1,57 @@
+{
+    frankenphp {
+        worker {
+            file /app/public/index.php
+            num 1
+            # Watch only critical files that change during development
+            # Avoid watching vendor/ or too many files (performance killer)
+            watch /app/routes/*.php
+            watch /app/app/Http/Controller/*.php
+            watch /app/app/Http/Middleware/*.php
+            watch /app/app/Facades/*.php
+        }
+    }
+}
+
+:80 {
+    root * /app/public
+
+    # Compression
+    encode zstd br gzip
+
+    # PHP server with FrankenPHP
+    php_server
+
+    # Block access to sensitive files/directories
+    @blockedFiles {
+        path /.env*
+        path /app/*
+        path /routes/*
+        path /storage/*
+        path /vendor/*
+        path /composer.*
+        path /.git/*
+        path /.gitignore
+        path /README.md
+    }
+
+    respond @blockedFiles 403
+
+    # Security headers
+    header {
+        X-Frame-Options "SAMEORIGIN"
+        X-Content-Type-Options "nosniff"
+        X-XSS-Protection "1; mode=block"
+        Referrer-Policy "strict-origin-when-cross-origin"
+        -Server
+    }
+
+    # Enable HSTS (uncomment in production with HTTPS)
+    # header Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+
+    # Logging
+    log {
+        output file /var/log/caddy/access.log
+        format json
+    }
+}
