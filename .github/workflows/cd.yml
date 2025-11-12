@@ -41,4 +41,16 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: /htdocs/
+          dangerous-clean-slate: true
+          local-dir: ./
+          exclude: |
+            **/.git*
+            **/.github*
+            **/test*
+            **/.env.example
+            **/.phpunit.result.cache
+            **/design.puml
+            **/docker*
+            **/phpunit.xml
+            **/Readme.md
 
