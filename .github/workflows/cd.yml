@@ -2,7 +2,7 @@ name: Deploy Ke Infinity Free
 on:
   push:
     branches:
-      - stagging
+      - master
 
 jobs:
   deploy:
