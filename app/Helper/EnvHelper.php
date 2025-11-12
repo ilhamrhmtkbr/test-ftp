@@ -8,7 +8,7 @@ class EnvHelper
 {
     public static function loadEnv(): void
     {
-        $filePath = __DIR__ . '../../.env';
+        $filePath = __DIR__ . '/../../.env';
         if (!file_exists($filePath)) {
             throw new Exception(".env file not found : " . $filePath);
         }
