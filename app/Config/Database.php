@@ -9,8 +9,9 @@ class Database
     private static ?\PDO $pdo = null;
     private static ?\mysqli $mysqli = null;
 
-    public static function getConnection(string $env = 'docker'): \PDO
+    public static function getConnection(): \PDO
     {
+        $env = $_ENV['APP_ENV'];
         if (self::$pdo == null) {
             require_once __DIR__ . '/../../config/database.php';
             $config = getDatabaseConfig();
@@ -39,8 +40,9 @@ class Database
         self::$pdo->rollBack();
     }
 
-    public static function getConnMysqli(string $env = 'docker'): \mysqli
+    public static function getConnMysqli(): \mysqli
     {
+        $env = $_ENV['APP_ENV'];
         if (self::$mysqli == null) {
             require_once __DIR__ . '/../../config/database.php';
             $config = getDatabaseConfig();
