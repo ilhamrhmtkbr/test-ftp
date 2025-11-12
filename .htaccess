@@ -1,29 +1,15 @@
-Options -Indexes +FollowSymLinks
-
 <IfModule mod_rewrite.c>
     RewriteEngine On
     RewriteBase /
 
-    # Jika file/folder ada di public, serve langsung
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteCond %{DOCUMENT_ROOT}/public%{REQUEST_URI} -f [OR]
-    RewriteCond %{DOCUMENT_ROOT}/public%{REQUEST_URI} -d
-    RewriteRule ^(.*)$ public/$1 [L]
-
-    # Semua request lainnya ke public/index.php
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^(.*)$ public/index.php [L,QSA]
+    # Redirect semua request ke folder public
+    RewriteRule ^$ public/ [L]
+    RewriteRule ^((?!public/).*)$ public/$1 [L,NC]
 </IfModule>
 
-# Blokir akses ke file sensitif
+# Security
+Options -Indexes
 <FilesMatch "^\.">
     Order allow,deny
     Deny from all
 </FilesMatch>
-
-<Files ".env">
-    Order allow,deny
-    Deny from all
-</Files>
