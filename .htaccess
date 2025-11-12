@@ -4,10 +4,6 @@ Options -Indexes +FollowSymLinks
     RewriteEngine On
     RewriteBase /
 
-    # Blokir akses langsung ke folder public dari URL
-    RewriteCond %{THE_REQUEST} ^.*/public/
-    RewriteRule ^(.*)$ - [R=404,L]
-
     # Jika file/folder ada di public, serve langsung
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
@@ -23,23 +19,11 @@ Options -Indexes +FollowSymLinks
 
 # Blokir akses ke file sensitif
 <FilesMatch "^\.">
-    Require all denied
+    Order allow,deny
+    Deny from all
 </FilesMatch>
 
 <Files ".env">
-    Require all denied
+    Order allow,deny
+    Deny from all
 </Files>
-
-<FilesMatch "(composer\.json|composer\.lock)$">
-    Require all denied
-</FilesMatch>
-
-# Set PHP settings untuk InfinityFree (PHP 8.3)
-<IfModule mod_php.c>
-    php_value upload_max_filesize 20M
-    php_value post_max_size 20M
-    php_value max_execution_time 60
-    php_value memory_limit 512M
-    php_flag display_errors Off
-    php_flag log_errors On
-</IfModule>
