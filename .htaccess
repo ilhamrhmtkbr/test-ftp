@@ -1,17 +1,24 @@
-# .htaccess di ROOT (sejajar dengan folder public)
-
-# Disable directory browsing
 Options -Indexes +FollowSymLinks
 
 <IfModule mod_rewrite.c>
     RewriteEngine On
+    RewriteBase /
 
-    # Jika sudah mengakses /public/, biarkan
-    RewriteCond %{REQUEST_URI} ^/public/
-    RewriteRule ^ - [L]
+    # Blokir akses langsung ke folder public dari URL
+    RewriteCond %{THE_REQUEST} ^.*/public/
+    RewriteRule ^(.*)$ - [R=404,L]
 
-    # Redirect semua request ke folder public
-    RewriteRule ^(.*)$ public/$1 [L,QSA]
+    # Jika file/folder ada di public, serve langsung
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{DOCUMENT_ROOT}/public%{REQUEST_URI} -f [OR]
+    RewriteCond %{DOCUMENT_ROOT}/public%{REQUEST_URI} -d
+    RewriteRule ^(.*)$ public/$1 [L]
+
+    # Semua request lainnya ke public/index.php
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ public/index.php [L,QSA]
 </IfModule>
 
 # Blokir akses ke file sensitif
@@ -19,12 +26,10 @@ Options -Indexes +FollowSymLinks
     Require all denied
 </FilesMatch>
 
-# Blokir akses ke .env
 <Files ".env">
     Require all denied
 </Files>
 
-# Blokir akses ke composer files
 <FilesMatch "(composer\.json|composer\.lock)$">
     Require all denied
 </FilesMatch>
