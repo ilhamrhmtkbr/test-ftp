@@ -1,0 +1,12 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Tentukan folder public sebagai base
+    RewriteCond %{REQUEST_URI} !^/public/
+
+    # Jika file/direktori tidak ada, arahkan ke public/index.php
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+    RewriteRule ^(.*)$ public/index.php [L]
+</IfModule>
