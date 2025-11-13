@@ -1,0 +1,16 @@
+DirectoryIndex public/index.php
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # Serve existing files di public
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+    # Redirect semua ke public/index.php
+    RewriteRule ^(.*)$ public/index.php [L]
+</IfModule>
+
+# Disable directory listing
+Options -Indexes
