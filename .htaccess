@@ -4,13 +4,21 @@ DirectoryIndex public/index.php
     RewriteEngine On
     RewriteBase /
 
-    # Serve existing files di public
+    # Serve assets dari public folder
+    RewriteCond %{REQUEST_URI} ^/assets/(.*)$
+    RewriteCond %{DOCUMENT_ROOT}/public/assets/%1 -f
+    RewriteRule ^assets/(.*)$ public/assets/$1 [L]
+
+    # Serve existing files di public (css, js, images)
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{DOCUMENT_ROOT}/public%{REQUEST_URI} -f
+    RewriteRule ^(.*)$ public/$1 [L]
 
-    # Redirect semua ke public/index.php
+    # Redirect semua request lainnya ke public/index.php
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^(.*)$ public/index.php [L]
 </IfModule>
 
-# Disable directory listing
 Options -Indexes

@@ -47,8 +47,8 @@ jobs:
             **/.git
             **/.idea
             **/.github
-            **/docker
-            **/test
+            **/docker/
+            **/test/
             **/.dockerignore
             **/.env.example
             **/.gitignore
