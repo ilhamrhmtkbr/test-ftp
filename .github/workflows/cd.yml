@@ -40,6 +40,8 @@ jobs:
           server: ${{ secrets.FTP_HOSTNAME }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
+          port: 21
+          protocol: ftps
           server-dir: /htdocs/
           dangerous-clean-slate: true
           local-dir: ./
@@ -47,8 +49,8 @@ jobs:
             **/.git
             **/.idea
             **/.github
-            **/docker/
-            **/test/
+            **/docker
+            **/test
             **/.dockerignore
             **/.env.example
             **/.gitignore

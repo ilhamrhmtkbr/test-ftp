@@ -1,12 +1,9 @@
 <?php
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
 date_default_timezone_set('Asia/Jakarta');
 
 // Load autoloader once at startup
-require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
 use ilhamrhmtkbr\App\Exceptions\RedirectException;
 use ilhamrhmtkbr\App\Facades\Router;
@@ -32,7 +29,7 @@ $handler = function () {
 
     try {
         // Load routes - isolated per request
-        require __DIR__ . '/../routes/web.php';
+        require __DIR__ . '/routes/web.php';
 
         // Execute router
         Router::run();
@@ -86,6 +83,6 @@ if (function_exists('frankenphp_handle_request')) {
      * Normal Mode (Apache/Nginx/PHP-FPM)
      * Traditional single-request processing
      */
-    require_once __DIR__ . '/../routes/web.php';
+    require_once __DIR__ . '/routes/web.php';
     Router::run();
 }
