@@ -12,8 +12,8 @@ use ilhamrhmtkbr\App\Http\Middleware\UrlParameterMiddleware;
 
 Router::add('GET', '/', HomeController::class, 'index');
 
-Router::add('GET', '/user/register', UserController::class, 'viewRegister', [AuthMiddleware::class]);
-Router::add('GET', '/user/login', UserController::class, 'viewLogin', [AuthMiddleware::class]);
+Router::add('GET', '/user/register', UserController::class, 'viewRegister');
+Router::add('GET', '/user/login', UserController::class, 'viewLogin');
 Router::add('GET', '/user/dashboard', UserController::class, 'viewDashboard', [AuthMiddleware::class]);
 Router::add('GET', '/user/advance/personal', UserController::class, 'viewPersonal', [AuthMiddleware::class]);
 Router::add('GET', '/user/advance/skill', UserController::class, 'viewSkill', [AuthMiddleware::class, UrlParameterMiddleware::class]);
