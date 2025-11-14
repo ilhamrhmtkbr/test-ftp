@@ -29,6 +29,13 @@ jobs:
           
           MAIL_USERNAME=${{ secrets.MAIL_USERNAME }}
           MAIL_PASSWORD=${{ secrets.MAIL_PASSWORD }}
+          
+          REDIS_TYPE=predis
+          REDIS_HOST=redis-11469.c334.asia-southeast2-1.gce.cloud.redislabs.com
+          REDIS_PORT=11469
+          REDIS_DB=0
+          REDIS_USER=default
+          REDIS_PASSWORD=tFD94YqflocvgII0t9MZ0A1RmMgIiId6
           EOF
 
       - name: Install Composer Dependencies
