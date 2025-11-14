@@ -49,14 +49,14 @@ class UrlHelper
                     $pathInfo = strtolower($elements[0]);
                 } else {
                     // DEBUG: Log invalid URL
-                    error_log("Invalid URL format: " . $elements[0]);
+                    DebugHelper::log("Invalid URL format: " . $elements[0]);
                 }
             } else {
                 if (self::isValidUrl($requestUri)) {
                     $pathInfo = strtolower($requestUri);
                 } else {
                     // DEBUG: Log invalid URL
-                    error_log("Invalid URL format: " . $requestUri);
+                    DebugHelper::log("Invalid URL format: " . $requestUri);
                 }
             }
         }
@@ -80,7 +80,7 @@ class UrlHelper
         }
 
         // Log untuk debugging
-        error_log("Invalid URL rejected: " . $url);
+        DebugHelper::log("Invalid URL rejected: " . $url);
         return false;
     }
 }

@@ -3,6 +3,7 @@
 namespace ilhamrhmtkbr\App\Facades;
 
 use ilhamrhmtkbr\App\Exceptions\RedirectException;
+use ilhamrhmtkbr\App\Helper\DebugHelper;
 use ilhamrhmtkbr\App\Helper\UrlHelper;
 
 class Router
@@ -46,10 +47,10 @@ class Router
             $path = UrlHelper::getPathInfo();
             $method = $_SERVER['REQUEST_METHOD'];
 
-            error_log("========== ROUTER DEBUG ==========");
-            error_log("Request Path: " . $path);
-            error_log("Request Method: " . $method);
-            error_log("Total Routes: " . count(self::$routes));
+            DebugHelper::log("========== ROUTER DEBUG ==========");
+            DebugHelper::log("Request Path: " . $path);
+            DebugHelper::log("Request Method: " . $method);
+            DebugHelper::log("Total Routes: " . count(self::$routes));
 
             foreach (self::$routes as $route) {
                 // Skip invalid routes - CHECK ALL REQUIRED KEYS
@@ -59,9 +60,9 @@ class Router
 
                 $pattern = '#^' . $route['path'] . '$#';
 
-                error_log("Checking route: {$route['method']} {$route['path']}");
-                error_log("Pattern: " . $pattern);
-                error_log("Match? " . (preg_match($pattern, $path) ? 'YES' : 'NO'));
+                DebugHelper::log("Checking route: {$route['method']} {$route['path']}");
+                DebugHelper::log("Pattern: " . $pattern);
+                DebugHelper::log("Match? " . (preg_match($pattern, $path) ? 'YES' : 'NO'));
 
                 // Handle DELETE method via POST override
                 if (isset($_POST['_method']) && $_POST['_method'] === 'DELETE') {
@@ -88,7 +89,7 @@ class Router
 
         } catch (\Throwable $e) {
             // Log error untuk debugging
-            error_log("Router error: " . $e->getMessage() . "\n" . $e->getTraceAsString());
+            DebugHelper::log("Router error: " . $e->getMessage() . "\n" . $e->getTraceAsString());
 
             // Clean output buffer
             while (ob_get_level() > 0) {
