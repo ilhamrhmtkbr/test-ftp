@@ -46,6 +46,11 @@ class Router
             $path = UrlHelper::getPathInfo();
             $method = $_SERVER['REQUEST_METHOD'];
 
+            error_log("========== ROUTER DEBUG ==========");
+            error_log("Request Path: " . $path);
+            error_log("Request Method: " . $method);
+            error_log("Total Routes: " . count(self::$routes));
+
             foreach (self::$routes as $route) {
                 // Skip invalid routes - CHECK ALL REQUIRED KEYS
                 if (empty($route['path']) || !isset($route['method']) || !isset($route['controller']) || !isset($route['function'])) {
@@ -53,6 +58,10 @@ class Router
                 }
 
                 $pattern = '#^' . $route['path'] . '$#';
+
+                error_log("Checking route: {$route['method']} {$route['path']}");
+                error_log("Pattern: " . $pattern);
+                error_log("Match? " . (preg_match($pattern, $path) ? 'YES' : 'NO'));
 
                 // Handle DELETE method via POST override
                 if (isset($_POST['_method']) && $_POST['_method'] === 'DELETE') {

@@ -47,12 +47,23 @@ class UrlHelper
                 $elements = explode('?', $requestUri);
                 if (self::isValidUrl($elements[0])) {
                     $pathInfo = strtolower($elements[0]);
+                } else {
+                    // DEBUG: Log invalid URL
+                    error_log("Invalid URL format: " . $elements[0]);
                 }
             } else {
                 if (self::isValidUrl($requestUri)) {
                     $pathInfo = strtolower($requestUri);
+                } else {
+                    // DEBUG: Log invalid URL
+                    error_log("Invalid URL format: " . $requestUri);
                 }
             }
+        }
+
+        // Remove trailing slash (kecuali root)
+        if ($pathInfo !== '/' && substr($pathInfo, -1) === '/') {
+            $pathInfo = substr($pathInfo, 0, -1);
         }
 
         return $pathInfo;
@@ -60,11 +71,16 @@ class UrlHelper
 
     private static function isValidUrl(string $url): bool
     {
-        $pattern = '/^[a-zA-Z\/\-]+$/'; // hanya boleh mengandung huruf dan '/'
+        // Allow: huruf, angka, /, -, _, dan titik
+        // Tapi tidak allow karakter berbahaya seperti <, >, ", ', dll
+        $pattern = '/^[a-zA-Z0-9\/\-_.]+$/';
+
         if (preg_match($pattern, $url)) {
             return true;
-        } else {
-            return false;
         }
+
+        // Log untuk debugging
+        error_log("Invalid URL rejected: " . $url);
+        return false;
     }
 }
