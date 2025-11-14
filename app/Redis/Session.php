@@ -8,7 +8,7 @@ use ilhamrhmtkbr\App\Models\User;
 use ilhamrhmtkbr\App\Repository\UserRepository;
 
 class Session{
-    public \Redis $redis;
+    public $redis;
     public static string $COOKIE_NAME = "X-IOGM-TALENT-HUB";
 
     public function __construct(){
@@ -30,7 +30,15 @@ class Session{
 
         $this->redis->set($user->email, json_encode($user, JSON_PRETTY_PRINT));
 
-        setcookie(self::$COOKIE_NAME, base64_encode($user->email), time() + (60 * 60 * 24), "/");
+        setcookie(
+            self::$COOKIE_NAME,
+            base64_encode($user->email),
+            time() + (60 * 60 * 24),
+            "/",
+            "", // domain (kosong = current domain)
+            isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on', // secure: true jika HTTPS
+            true  // httponly: tidak bisa diakses JavaScript (XSS protection)
+        );
     }
 
     public function update(string $userId): void
@@ -40,7 +48,15 @@ class Session{
 
         if ($this->redis->exists($user->email)) {
             $this->redis->set($user->email, json_encode($user, JSON_PRETTY_PRINT));
-            setcookie(self::$COOKIE_NAME, base64_encode($userId), time() + (60 * 60 * 24), "/");
+            setcookie(
+                self::$COOKIE_NAME,
+                base64_encode($userId),
+                time() + (60 * 60 * 24),
+                "/",
+                "",
+                isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on',
+                true
+            );
         }
     }
 
@@ -51,7 +67,15 @@ class Session{
 
         if ($this->redis->exists($userId)) {
             $this->redis->del($userId);
-            setcookie(self::$COOKIE_NAME, '', 1, "/");
+            setcookie(
+                self::$COOKIE_NAME,
+                '',
+                time() - 3600, // 1 jam yang lalu
+                "/",
+                "",
+                isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on',
+                true
+            );
         }
     }
 
@@ -76,7 +100,17 @@ class Session{
         }
 
         $userId = base64_decode($sessionId);
+
+        if (empty($userId)) {
+            return null;
+        }
+
         $dataRedis = $this->redis->get($userId);
+
+        if (!$dataRedis) {
+            return null;
+        }
+
         $dataUser = json_decode($dataRedis, true);
 
         if ($dataUser) {
