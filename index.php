@@ -3,7 +3,7 @@
 date_default_timezone_set('Asia/Jakarta');
 
 // Load autoloader once at startup
-require_once __DIR__ . '/vendor/autoload.php';
+require __DIR__ . '/vendor/autoload.php';
 
 use ilhamrhmtkbr\App\Exceptions\RedirectException;
 use ilhamrhmtkbr\App\Facades\Router;
@@ -83,6 +83,6 @@ if (function_exists('frankenphp_handle_request')) {
      * Normal Mode (Apache/Nginx/PHP-FPM)
      * Traditional single-request processing
      */
-    require_once __DIR__ . '/routes/web.php';
+    require __DIR__ . '/routes/web.php';
     Router::run();
 }
