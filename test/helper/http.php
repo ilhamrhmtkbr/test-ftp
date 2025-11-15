@@ -8,13 +8,13 @@ namespace ilhamrhmtkbr\App\Facades {
 }
 
 namespace ilhamrhmtkbr\App\Service {
-    function setCookie(string $name, string $value) {}
+    function setcookie(string $name, string $value) {}
 }
 
 namespace ilhamrhmtkbr\App\Facades {
-    function setCookie(string $name, string $value) {}
+    function setcookie(string $name, string $value) {}
 }
 
 namespace ilhamrhmtkbr\App\Helper {
-    function setCookie(string $name, string $value) {}
+    function setcookie(string $name, string $value) {}
 }
