@@ -1,7 +1,6 @@
 RewriteEngine On
-RewriteBase /
 
-# Arahkan semua request ke index.php
+# Arahkan semua request ke index.php (kecuali file/folder yang ada)
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^ index.php [L]
+RewriteRule ^(.*)$ index.php [L,QSA]
