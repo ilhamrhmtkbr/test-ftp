@@ -6,8 +6,8 @@ namespace ilhamrhmtkbr\Test {
     require_once __DIR__ . '/../config/test.php';
 
     use GuzzleHttp\Client;
+    use ilhamrhmtkbr\App\Facades\Session;
     use ilhamrhmtkbr\App\Models\User;
-    use ilhamrhmtkbr\App\Redis\Session;
     use ilhamrhmtkbr\Test\refactory\CustomClientCookies;
     use PHPUnit\Framework\TestCase;
 

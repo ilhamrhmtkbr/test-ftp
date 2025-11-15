@@ -3,12 +3,11 @@
 namespace ilhamrhmtkbr\App\Http\Controller;
 
 use ilhamrhmtkbr\App\Config\Database;
-use ilhamrhmtkbr\App\Exceptions\RedirectException;
 use ilhamrhmtkbr\App\Exceptions\ValidationException;
 use ilhamrhmtkbr\App\Facades\Request;
+use ilhamrhmtkbr\App\Facades\Session;
 use ilhamrhmtkbr\App\Facades\View;
 use ilhamrhmtkbr\App\Helper\Components\AlertWithCloseHelper;
-use ilhamrhmtkbr\App\Redis\Session;
 use ilhamrhmtkbr\App\Repository\CandidateRepository;
 use ilhamrhmtkbr\App\Repository\UserRepository;
 use ilhamrhmtkbr\App\Service\CandidateService;

@@ -7,9 +7,9 @@ namespace ilhamrhmtkbr\Test {
 
     use GuzzleHttp\Client;
     use ilhamrhmtkbr\App\Config\Database;
-    use ilhamrhmtkbr\App\Models\User;
+    use ilhamrhmtkbr\App\Facades\Session;
     use ilhamrhmtkbr\App\Helper\FormSessionHelper;
-    use ilhamrhmtkbr\App\Redis\Session;
+    use ilhamrhmtkbr\App\Models\User;
     use ilhamrhmtkbr\App\Repository\UserRepository;
     use ilhamrhmtkbr\Test\refactory\CustomClientCookies;
     use PHPUnit\Framework\TestCase;

@@ -2,9 +2,9 @@
 
 namespace ilhamrhmtkbr\App\Http\Middleware;
 
+use ilhamrhmtkbr\App\Facades\Session;
 use ilhamrhmtkbr\App\Facades\View;
 use ilhamrhmtkbr\App\Helper\UrlHelper;
-use ilhamrhmtkbr\App\Redis\Session;
 
 class AuthMiddleware implements Middleware
 {

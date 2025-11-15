@@ -3,10 +3,10 @@
 namespace ilhamrhmtkbr\App\Service;
 
 use ilhamrhmtkbr\App\Config\Database;
-use ilhamrhmtkbr\App\Models\Candidates;
 use ilhamrhmtkbr\App\Exceptions\ValidationException;
 use ilhamrhmtkbr\App\Facades\Request;
-use ilhamrhmtkbr\App\Redis\Session;
+use ilhamrhmtkbr\App\Facades\Session;
+use ilhamrhmtkbr\App\Models\Candidates;
 use ilhamrhmtkbr\App\Repository\CandidateRepository;
 use ilhamrhmtkbr\App\Repository\UserRepository;
 

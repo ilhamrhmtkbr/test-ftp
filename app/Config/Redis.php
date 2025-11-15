@@ -2,7 +2,7 @@
 
 namespace ilhamrhmtkbr\App\Config;
 
-class RedisConf
+class Redis
 {
     private static $redis = null;
 
@@ -10,7 +10,6 @@ class RedisConf
     {
         if (self::$redis === null) {
             if ($_ENV['REDIS_TYPE'] === 'docker') {
-                // PERBAIKAN: Instantiate Redis object dulu sebelum connect
                 self::$redis = new \Redis();
                 self::$redis->connect('talent-hub-redis', 6379);
 

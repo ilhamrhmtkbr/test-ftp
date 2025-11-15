@@ -7,17 +7,15 @@ namespace ilhamrhmtkbr\Test {
 
     use GuzzleHttp\Client;
     use ilhamrhmtkbr\App\Config\Database;
+    use ilhamrhmtkbr\App\Facades\Session;
+    use ilhamrhmtkbr\App\Helper\FormSessionHelper;
     use ilhamrhmtkbr\App\Models\User;
     use ilhamrhmtkbr\App\Models\UserAdvancePersonal;
     use ilhamrhmtkbr\App\Models\UserAdvanceSkills;
     use ilhamrhmtkbr\App\Models\UserAdvanceSocial;
     use ilhamrhmtkbr\App\Models\UserProfileEducation;
     use ilhamrhmtkbr\App\Models\UserProfileExperience;
-    use ilhamrhmtkbr\App\Helper\FormSessionHelper;
-    use ilhamrhmtkbr\App\Redis\Session;
-    use ilhamrhmtkbr\App\Repository\SessionRepository;
     use ilhamrhmtkbr\App\Repository\UserRepository;
-    use ilhamrhmtkbr\App\Service\SessionService;
     use ilhamrhmtkbr\Test\refactory\CustomClientCookies;
     use PHPUnit\Framework\TestCase;
 

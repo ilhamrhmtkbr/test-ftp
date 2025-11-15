@@ -5,11 +5,11 @@ namespace ilhamrhmtkbr\App\Http\Controller;
 use ilhamrhmtkbr\App\Config\Database;
 use ilhamrhmtkbr\App\Exceptions\ValidationException;
 use ilhamrhmtkbr\App\Facades\Request;
+use ilhamrhmtkbr\App\Facades\Session;
 use ilhamrhmtkbr\App\Facades\View;
 use ilhamrhmtkbr\App\Helper\Components\BadgeWithCloseHelper;
 use ilhamrhmtkbr\App\Helper\UrlHelper;
 use ilhamrhmtkbr\App\Models\UserAdvancePersonal;
-use ilhamrhmtkbr\App\Redis\Session;
 use ilhamrhmtkbr\App\Repository\UserRepository;
 use ilhamrhmtkbr\App\Service\UserService;
 

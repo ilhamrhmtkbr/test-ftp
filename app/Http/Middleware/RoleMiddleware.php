@@ -3,9 +3,9 @@
 namespace ilhamrhmtkbr\App\Http\Middleware;
 
 use ilhamrhmtkbr\App\Config\Database;
+use ilhamrhmtkbr\App\Facades\Session;
 use ilhamrhmtkbr\App\Facades\View;
 use ilhamrhmtkbr\App\Helper\UrlHelper;
-use ilhamrhmtkbr\App\Redis\Session;
 use ilhamrhmtkbr\App\Repository\UserRepository;
 
 class RoleMiddleware implements Middleware

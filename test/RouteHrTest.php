@@ -6,6 +6,8 @@ namespace ilhamrhmtkbr\Test {
 
     use GuzzleHttp\Client;
     use ilhamrhmtkbr\App\Config\Database;
+    use ilhamrhmtkbr\App\Facades\Session;
+    use ilhamrhmtkbr\App\Helper\FormSessionHelper;
     use ilhamrhmtkbr\App\Models\Candidates;
     use ilhamrhmtkbr\App\Models\CompanyEmployeeProjects;
     use ilhamrhmtkbr\App\Models\CompanyEmployeeRoles;
@@ -20,8 +22,6 @@ namespace ilhamrhmtkbr\Test {
     use ilhamrhmtkbr\App\Models\EmployeeProjectAssigments;
     use ilhamrhmtkbr\App\Models\Employees;
     use ilhamrhmtkbr\App\Models\User;
-    use ilhamrhmtkbr\App\Helper\FormSessionHelper;
-    use ilhamrhmtkbr\App\Redis\Session;
     use ilhamrhmtkbr\App\Repository\CandidateRepository;
     use ilhamrhmtkbr\App\Repository\HrRepository;
     use ilhamrhmtkbr\App\Repository\UserRepository;

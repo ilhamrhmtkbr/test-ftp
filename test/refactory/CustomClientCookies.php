@@ -5,8 +5,8 @@ namespace ilhamrhmtkbr\Test\refactory;
 use GuzzleHttp\Client;
 use GuzzleHttp\Cookie\CookieJar;
 use GuzzleHttp\Cookie\SetCookie;
+use ilhamrhmtkbr\App\Facades\Session;
 use ilhamrhmtkbr\App\Helper\FormSessionHelper;
-use ilhamrhmtkbr\App\Redis\Session;
 
 require_once __DIR__ . '/../../config/test.php';
 
