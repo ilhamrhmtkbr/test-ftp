@@ -11,7 +11,7 @@ namespace ilhamrhmtkbr\App\Service {
     function setCookie(string $name, string $value) {}
 }
 
-namespace ilhamrhmtkbr\App\Redis {
+namespace ilhamrhmtkbr\App\Facades {
     function setCookie(string $name, string $value) {}
 }
 
