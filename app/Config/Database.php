@@ -11,7 +11,7 @@ class Database
 
     public static function getConnection(): \PDO
     {
-        $env = $_ENV['APP_ENV'];
+        $env = $_ENV['APP_ENV'] ?? 'docker';
         if (self::$pdo == null) {
             require_once __DIR__ . '/../../config/database.php';
             $config = getDatabaseConfig();
@@ -42,7 +42,7 @@ class Database
 
     public static function getConnMysqli(): \mysqli
     {
-        $env = $_ENV['APP_ENV'];
+        $env = $_ENV['APP_ENV'] ?? 'docker';
         if (self::$mysqli == null) {
             require_once __DIR__ . '/../../config/database.php';
             $config = getDatabaseConfig();
