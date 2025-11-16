@@ -4,6 +4,20 @@ services:
       context: ../../
       dockerfile: docker/php/Dockerfile
     container_name: talent-hub-app
+    environment:
+      - APP_ENV=docker
+
+      - DB_HOST=localhost
+      - DB_PASSWORD=root
+      - DB_USERNAME=root
+      - DB_NAME=talent_hub
+
+      - REDIS_TYPE=docker
+      - REDIS_HOST=talent-hub-redis
+      - REDIS_PORT=6379
+      - REDIS_DB=0
+      - REDIS_USER=default
+      - REDIS_PASSWORD=
     ports:
       - protocol: tcp
         published: 80
