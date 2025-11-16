@@ -3,7 +3,8 @@
 namespace ilhamrhmtkbr\App\Facades {
     function header(string $value): void
     {
-        echo $value;
+//        echo $value;
+        \header($value);
     }
 }
 

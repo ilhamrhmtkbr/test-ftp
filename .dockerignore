@@ -3,9 +3,8 @@
 .vscode
 *.log
 vendor
-.env
 .dockerignore
 .gitignore
 command.sh
-design.puml
+app-design.puml
 dll

@@ -2,11 +2,6 @@
 
 function getDatabaseConfig(): array
 {
-    $dbHost = $_ENV['DB_HOST'] ?? 'localhost';
-    $dbName = $_ENV['DB_NAME'] ?? 'talent_hub';
-    $dbUser = $_ENV['DB_USERNAME'] ?? 'root';
-    $dbPass = $_ENV['DB_PASSWORD'] ?? 'root';
-
     return [
         'database-pdo' => [
             'test' => [
@@ -15,9 +10,9 @@ function getDatabaseConfig(): array
                 'password' => ''
             ],
             'prod' => [
-                'url' => "mysql:host=". $dbHost .";dbname=" . $dbName,
-                'username' => $dbUser,
-                'password' => $dbPass
+                'url' => "mysql:host=". $_ENV['DB_HOST'] .";dbname=" . $_ENV['DB_NAME'],
+                'username' => $_ENV['DB_USERNAME'],
+                'password' => $_ENV['DB_PASSWORD']
             ],
             'docker' => [
                 'url' => 'mysql:host=talent-hub-mysql;dbname=talent_hub',
@@ -34,10 +29,10 @@ function getDatabaseConfig(): array
                 'db_name' => 'talent_hub_test'
             ],
             'prod' => [
-                'host' => $dbHost,
-                'user' => $dbUser,
-                'password' => $dbPass,
-                'db_name' => $dbName
+                'host' => $_ENV['DB_HOST'],
+                'user' => $_ENV['DB_USERNAME'],
+                'password' => $_ENV['DB_PASSWORD'],
+                'db_name' => $_ENV['DB_NAME']
             ],
             'docker' => [
                 'host' => 'talent-hub-mysql',

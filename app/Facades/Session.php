@@ -5,7 +5,6 @@ namespace ilhamrhmtkbr\App\Facades;
 use ilhamrhmtkbr\App\Config\Database;
 use ilhamrhmtkbr\App\Models\User;
 use ilhamrhmtkbr\App\Repository\UserRepository;
-# use function ilhamrhmtkbr\App\Facades\setcookie;
 
 class Session{
     public $redis = null;

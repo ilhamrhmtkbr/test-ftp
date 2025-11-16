@@ -6,7 +6,7 @@ services:
     container_name: talent-hub-app
     ports:
       - protocol: tcp
-        published: 8000
+        published: 80
         target: 80
     networks:
       - talent-hub-network
@@ -29,8 +29,6 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       TZ: Asia/Jakarta
-    ports:
-      - "3306:3306"
     networks:
       - talent-hub-network
     depends_on:
