@@ -7,8 +7,6 @@ services:
     restart: unless-stopped
     volumes:
       - ../../:/app
-    environment:
-      - PHP_ENV=${APP_ENV:-development}
     ports:
       - protocol: tcp
         published: 8000

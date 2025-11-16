@@ -23,10 +23,10 @@ jobs:
           sleep 15
           sudo docker ps -a
           
-          sudo docker compose -f docker/php/docker-compose.yaml exec talent-hub-app composer install
+          sudo docker compose -f docker/php/docker-compose-ci.yaml exec talent-hub-app composer install
           
-          sudo docker compose -f docker/php/docker-compose.yaml exec -i talent-hub-mysql mysql -u root -proot -e "CREATE DATABASE IF NOT EXISTS talent_hub;"
-          sudo docker compose -f docker/php/docker-compose.yaml exec -i talent-hub-mysql mysql -u root -proot talent_hub < docker/mysql/talent_hub.sql
+          sudo docker compose -f docker/php/docker-compose-ci.yaml exec -i talent-hub-mysql mysql -u root -proot -e "CREATE DATABASE IF NOT EXISTS talent_hub;"
+          sudo docker compose -f docker/php/docker-compose-ci.yaml exec -i talent-hub-mysql mysql -u root -proot talent_hub < docker/mysql/talent_hub.sql
           
           for i in {1..30}; do
           if sudo docker exec talent-hub-mysql mysql -uroot -proot -e "SELECT 1" &>/dev/null; then
