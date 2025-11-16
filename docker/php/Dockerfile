@@ -2,10 +2,6 @@ FROM dunglas/frankenphp:php8.2
 
 WORKDIR /app
 
-ARG PHP_ENV=development
-ENV APP_ENV=${PHP_ENV}
-ENV SERVER_NAME=:80
-
 RUN apt-get update && apt-get install -y \
     libjpeg-dev \
     libpng-dev \
